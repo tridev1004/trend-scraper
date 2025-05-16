@@ -1,7 +1,7 @@
 import { TrendItem, TrendSummary } from '@/types';
 
 // Function to generate dummy summary for trends (in production, this would use OpenAI API)
-export function generateTrendSummary(items: TrendItem[]): TrendSummary {
+export function generateTrendSummary(items: any[]): any {
   if (!items || items.length === 0) {
     return {
       keyTakeaways: ['No trends found to summarize.'],
@@ -21,13 +21,7 @@ export function generateTrendSummary(items: TrendItem[]): TrendSummary {
     neutral: 0,
   };
   
-  items.forEach(item => {
-    if (item.sentiment) {
-      sentimentCounts[item.sentiment]++;
-    } else {
-      sentimentCounts.neutral++;
-    }
-  });
+
   
   // Find most engaged items
   let mostLiked: TrendItem | undefined;
@@ -49,7 +43,7 @@ export function generateTrendSummary(items: TrendItem[]): TrendSummary {
   });
   
   // Generate key takeaways (simplified for this example)
-  const platforms = [...new Set(items.map(item => item.platform))];
+  const platforms = [...new Set(items.map(item => item.platform))as any ];
   const platformCounts: Record<string, number> = {};
   platforms.forEach(platform => {
     platformCounts[platform] = items.filter(item => item.platform === platform).length;
