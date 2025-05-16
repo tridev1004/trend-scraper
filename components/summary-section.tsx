@@ -1,14 +1,29 @@
-"use client"
-
 import React from "react"
 import { motion } from "framer-motion"
 import { TrendSummary } from "@/types"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { ThumbsUp, ThumbsDown, Minus } from "lucide-react"
-import { Progress } from "@/components/ui/progress"
 
 interface SummarySectionProps {
   summary: TrendSummary
+}
+
+// Custom Progress component to replace the shadcn/ui one
+interface CustomProgressProps {
+  value: number;
+  className?: string;
+  color: string;
+}
+
+function CustomProgress({ value, className, color }: CustomProgressProps) {
+  return (
+    <div className={`w-full h-2 bg-muted rounded-full overflow-hidden ${className}`}>
+      <div 
+        className={`h-full ${color}`} 
+        style={{ width: `${Math.max(0, Math.min(100, value))}%` }}
+      />
+    </div>
+  );
 }
 
 export function SummarySection({ summary }: SummarySectionProps) {
@@ -48,7 +63,7 @@ export function SummarySection({ summary }: SummarySectionProps) {
                   {summary.sentimentBreakdown.positive} ({calculatePercentage(summary.sentimentBreakdown.positive).toFixed(0)}%)
                 </span>
               </div>
-              <Progress value={calculatePercentage(summary.sentimentBreakdown.positive)} className="h-2 bg-muted" color="bg-green-500" />
+              <CustomProgress value={calculatePercentage(summary.sentimentBreakdown.positive)} className="h-2" color="bg-green-500" />
               
               <div className="flex items-center justify-between mt-2">
                 <div className="flex items-center gap-2">
@@ -59,7 +74,7 @@ export function SummarySection({ summary }: SummarySectionProps) {
                   {summary.sentimentBreakdown.neutral} ({calculatePercentage(summary.sentimentBreakdown.neutral).toFixed(0)}%)
                 </span>
               </div>
-              <Progress value={calculatePercentage(summary.sentimentBreakdown.neutral)} className="h-2 bg-muted" color="bg-gray-500" />
+              <CustomProgress value={calculatePercentage(summary.sentimentBreakdown.neutral)} className="h-2" color="bg-gray-500" />
               
               <div className="flex items-center justify-between mt-2">
                 <div className="flex items-center gap-2">
@@ -70,7 +85,7 @@ export function SummarySection({ summary }: SummarySectionProps) {
                   {summary.sentimentBreakdown.negative} ({calculatePercentage(summary.sentimentBreakdown.negative).toFixed(0)}%)
                 </span>
               </div>
-              <Progress value={calculatePercentage(summary.sentimentBreakdown.negative)} className="h-2 bg-muted" color="bg-red-500" />
+              <CustomProgress value={calculatePercentage(summary.sentimentBreakdown.negative)} className="h-2" color="bg-red-500" />
             </div>
           </div>
           
@@ -78,7 +93,7 @@ export function SummarySection({ summary }: SummarySectionProps) {
           <div className="space-y-3">
             <h3 className="font-medium">Summary</h3>
             <ul className="space-y-2 text-sm">
-              {summary.keyTakeaways.map((point, index) => (
+              {summary?.keyTakeaways?.map((point, index) => (
                 <li key={index} className="flex gap-2">
                   <span className="font-medium text-primary">•</span>
                   <span>{point}</span>
