@@ -34,7 +34,7 @@ export function getApiConfig(): ApiKeyConfig {
 }
 
 // Update API configuration with user-provided keys
-export function updateApiConfig(newConfig: Partial<ApiKeyConfig>): void {
+export function updateApiConfig(newConfig:any): any {
   userApiConfig = {
     ...userApiConfig,
     ...newConfig,
@@ -48,7 +48,7 @@ export function updateApiConfig(newConfig: Partial<ApiKeyConfig>): void {
       ...newConfig.twitter,
     },
   };
-}
+} 
 
 // Platform-specific colors for UI
 export const platformColors = {
