@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, LineChart, TrendingUp, Search, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 export default function Home() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)]">

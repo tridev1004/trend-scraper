@@ -166,7 +166,7 @@ export function ApiKeysDialog() {
                 value={keys.reddit?.clientId || ""}
                 onChange={(e) => setKeys({ 
                   ...keys, 
-                  reddit: { ...keys.reddit, clientId: e.target.value } 
+                  reddit: { ...keys.reddit, clientId: e.target.value }  as any
                 })}
               />
             </div>
@@ -180,7 +180,7 @@ export function ApiKeysDialog() {
                 value={keys.reddit?.clientSecret || ""}
                 onChange={(e) => setKeys({ 
                   ...keys, 
-                  reddit: { ...keys.reddit, clientSecret: e.target.value } 
+                  reddit: { ...keys.reddit, clientSecret: e.target.value }  as any
                 })}
               />
             </div>
@@ -203,7 +203,7 @@ export function ApiKeysDialog() {
                 value={keys.twitter?.bearerToken || ""}
                 onChange={(e) => setKeys({ 
                   ...keys, 
-                  twitter: { ...keys.twitter, bearerToken: e.target.value } 
+                  twitter: { ...keys.twitter, bearerToken: e.target.value }  as any
                 })}
               />
             </div>
@@ -217,7 +217,7 @@ export function ApiKeysDialog() {
                   value={keys.twitter?.apiKey || ""}
                   onChange={(e) => setKeys({ 
                     ...keys, 
-                    twitter: { ...keys.twitter, apiKey: e.target.value } 
+                    twitter: { ...keys.twitter, apiKey: e.target.value } as any
                   })}
                 />
               </div>
@@ -231,7 +231,7 @@ export function ApiKeysDialog() {
                   value={keys.twitter?.apiKeySecret || ""}
                   onChange={(e) => setKeys({ 
                     ...keys, 
-                    twitter: { ...keys.twitter, apiKeySecret: e.target.value } 
+                    twitter: { ...keys.twitter, apiKeySecret: e.target.value } as any
                   })}
                 />
               </div>
