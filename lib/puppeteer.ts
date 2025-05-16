@@ -61,7 +61,7 @@ export async function scrapeYouTube(query: string, limit = 10): Promise<TrendIte
             url: videoId ? `https://www.youtube.com/watch?v=${videoId}` : '',
             author: channelElement.textContent?.trim() || '',
             date: '',  // Need to visit each video to get date
-            thumbnailUrl: thumbnailElement?.src || '',
+            thumbnailUrl: thumbnailElement || '',
             engagement: {
               views: metadataElement?.textContent?.match(/(\d+[KMB]?) views/)?.[1] || 0,
               likes: 0,  // Need to visit each video to get likes
