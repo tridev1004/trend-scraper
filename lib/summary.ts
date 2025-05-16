@@ -21,7 +21,16 @@ export function generateTrendSummary(items: any[]): any {
     neutral: 0,
   };
   
+  items.forEach(item => {
+  type Sentiment = 'positive' | 'negative' | 'neutral';
 
+if (item.sentiment && ['positive', 'negative', 'neutral'].includes(item.sentiment)) {
+  sentimentCounts[item.sentiment as Sentiment]++;
+} else {
+  sentimentCounts.neutral++;
+}
+
+  });
   
   // Find most engaged items
   let mostLiked: TrendItem | undefined;
@@ -43,7 +52,7 @@ export function generateTrendSummary(items: any[]): any {
   });
   
   // Generate key takeaways (simplified for this example)
-  const platforms = [...new Set(items.map(item => item.platform))as any ];
+  const platforms = [...new Set(items.map(item => item.platform))as any];
   const platformCounts: Record<string, number> = {};
   platforms.forEach(platform => {
     platformCounts[platform] = items.filter(item => item.platform === platform).length;
